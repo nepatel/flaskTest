@@ -1,8 +1,15 @@
 from flask import Flask, request, url_for, render_template, jsonify
+import os
 
 app = Flask(__name__)
 @app.route('/')
 def testApp():
+    scope = ['https://spreadsheets.google.com/feeds',
+             'https://www.googleapis.com/auth/drive']
+    
+    # read env data
+    credentials_raw = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+
     crime_Dict = {
                     "crimes": [
                         {
