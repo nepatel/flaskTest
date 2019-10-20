@@ -106,7 +106,8 @@ def testApp():
                         }
                         ]}
 
-    return jsonify(crime_Dict)
+    #return jsonify(crime_Dict)
+    return jsonify(credentials_raw)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 3000))
