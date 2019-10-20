@@ -1,7 +1,7 @@
 import flask
 
 
-app = Flask(__name__)
+app = flask.Flask(__name__)
 @app.route('/')
 def testApp():
     crime_Dict = {
