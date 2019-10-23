@@ -10,11 +10,15 @@ def testApp():
     
     # read env data
     credentials_raw = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
-    credentials_json = json.loads(credentials_raw);
+    credentials_json = json.loads(credentials_raw)
  
     credentials = ServiceAccountCredentials.from_json_keyfile_dict(credentials_json, scope)
     
     gc = gspread.authorize(credentials)
+
+    url = "https://docs.google.com/spreadsheets/d/12_iuy8fyGuZ8KreBWNmaJirSsSmD1Lf3D10UVDUJ3rc/edit#gid=0"
+    
+    log = gc.open_by_url(url).sheet1.col_values(1)
 
     crime_Dict = {
                     "crimes": [
