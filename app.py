@@ -1,6 +1,6 @@
 from flask import Flask, request, url_for, render_template, jsonify
 from oauth2client.service_account import ServiceAccountCredentials
-import os, gspread
+import os, gspread, json
 
 app = Flask(__name__)
 @app.route('/')
@@ -10,6 +10,7 @@ def testApp():
     
     # read env data
     credentials_raw = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+    credentials_raw = json.loads(credentials_raw);
  
     #credentials = ServiceAccountCredentials.from_json_keyfile_dict(all_creds, scope)
     
