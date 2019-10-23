@@ -1,5 +1,6 @@
 from flask import Flask, request, url_for, render_template, jsonify
-import os
+from oauth2client.service_account import ServiceAccountCredentials
+import os, gspread
 
 app = Flask(__name__)
 @app.route('/')
@@ -9,8 +10,10 @@ def testApp():
     
     # read env data
     credentials_raw = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
-    credentials = ServiceAccountCredentials.from_json_keyfile_dict(
-        credentials_raw, scope)
+ 
+    credentials = ServiceAccountCredentials.from_json_keyfile_dict(all_creds, scope)
+    
+    gc = gspread.authorize(credentials)
 
     crime_Dict = {
                     "crimes": [
