@@ -118,15 +118,16 @@ def testApp():
 
     crimes = crime_Dict['crimes']
     
+    # loops through keys in crime dictionary
     for crime in crimes:
+        # loops through entries in the crime log
         for entry in log:
+            # if the name of the crime is mentioned in the entry
             if crime['crime'] in entry.lower():
+                # increment by one
                 crime['count'] += 1
         
     return jsonify(crime_Dict)
-
-    return jsonify(crime_Dict)
-    #return jsonify(credentials_raw)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 3000))
