@@ -10,11 +10,11 @@ def testApp():
     
     # read env data
     credentials_raw = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
-    credentials_raw = json.loads(credentials_raw);
+    credentials_json = json.loads(credentials_raw);
  
-    #credentials = ServiceAccountCredentials.from_json_keyfile_dict(all_creds, scope)
+    credentials = ServiceAccountCredentials.from_json_keyfile_dict(credentials_json, scope)
     
-    #gc = gspread.authorize(credentials)
+    gc = gspread.authorize(credentials)
 
     crime_Dict = {
                     "crimes": [
@@ -112,8 +112,8 @@ def testApp():
                         }
                         ]}
 
-    #return jsonify(crime_Dict)
-    return jsonify(credentials_raw)
+    return jsonify(crime_Dict)
+    #return jsonify(credentials_raw)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 3000))
