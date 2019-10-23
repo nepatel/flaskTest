@@ -116,6 +116,15 @@ def testApp():
                         }
                         ]}
 
+    crimes = crime_Dict['crimes']
+    
+    for crime in crimes:
+        for entry in log:
+            if crime['crime'] in entry.lower():
+                crime['count'] += 1
+        
+    return jsonify(crime_Dict)
+
     return jsonify(crime_Dict)
     #return jsonify(credentials_raw)
 
